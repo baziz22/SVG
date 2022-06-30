@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Random Elements</title>
+    <style>
+      #myDrawing {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Elements</h1>
+    <svg id="myDrawing" width="300" height="200"></svg>
+    <script>
+      // Generate Random Squares
+
+      let mySVG = document.querySelector("#myDrawing");
+      let maxSize = 50;
+      let maxX = 300;
+      let maxY = 200;
+
+      function randomSquare() {
+        let x = Math.random() * (maxX - maxSize);
+        let y = Math.random() * (maxY - maxSize);
+        let width = Math.random() * maxSize;
+        let square = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        square.setAttribute("class", "rectangle");
+        square.setAttribute("x", x);
+        square.setAttribute("y", y);
+        square.setAttribute("width", width);
+        square.setAttribute("height", width);
+        let colorStr = `rgb(${255 * Math.random()},${255 * Math.random()},${
+          255 * Math.random()
+        })`;
+        square.setAttribute("fill", colorStr);
+        square.setAttribute("fill-opacity", 0.7);
+        return square;
+      }
+      for (let i = 0; i < 30; i++) {
+        mySVG.appendChild(randomSquare());
+      }
+    </script>
+  </body>
+</html>
